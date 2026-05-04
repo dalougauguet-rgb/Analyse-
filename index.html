@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -7,614 +6,607 @@
 <title>Maths · Intégration & Taylor</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
 <style>
- :root {
-   --bg: #0c0c10;
-   --surface: #14141a;
-   --card: #1a1a24;
-   --border: #2a2a38;
-   --accent1: #e8ff6b;
-   --accent2: #6bffd4;
-   --accent3: #ff6b9d;
-   --accent4: #6b9dff;
-   --text: #e8e8f0;
-   --muted: #7070a0;
-   --formula: #1e1e2e;
- }
+  :root {
+    --bg: #0c0c10;
+    --surface: #14141a;
+    --card: #1a1a24;
+    --border: #2a2a38;
+    --accent1: #e8ff6b;
+    --accent2: #6bffd4;
+    --accent3: #ff6b9d;
+    --accent4: #6b9dff;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+    --formula: #1e1e2e;
+  }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-background: var(–bg);
-color: var(–text);
-font-family: ‘Lora’, Georgia, serif;
-line-height: 1.7;
-overflow-x: hidden;
-}
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-/* — HERO — */
-.hero {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-position: relative;
-padding: 2rem;
-background: radial-gradient(ellipse 80% 60% at 50% 30%, #1a1a3e 0%, var(–bg) 70%);
-}
-.hero::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-background:
-repeating-linear-gradient(0deg, transparent, transparent 40px, #ffffff04 40px, #ffffff04 41px),
-repeating-linear-gradient(90deg, transparent, transparent 40px, #ffffff04 40px, #ffffff04 41px);
-pointer-events: none;
-}
-.countdown-badge {
-display: inline-block;
-background: var(–accent3);
-color: #0c0c10;
-font-family: ‘Syne’, sans-serif;
-font-weight: 800;
-font-size: 0.75rem;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-padding: 0.3em 0.9em;
-border-radius: 2em;
-margin-bottom: 1.5rem;
-animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+  /* — HERO — */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 2rem;
+    background: radial-gradient(ellipse 80% 60% at 50% 30%, #1a1a3e 0%, var(--bg) 70%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 40px, #ffffff04 40px, #ffffff04 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, #ffffff04 40px, #ffffff04 41px);
+    pointer-events: none;
+  }
+  .countdown-badge {
+    display: inline-block;
+    background: var(--accent3);
+    color: #0c0c10;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3em 0.9em;
+    border-radius: 2em;
+    margin-bottom: 1.5rem;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
 
-.hero h1 {
-font-family: ‘Syne’, sans-serif;
-font-size: clamp(2.5rem, 8vw, 6rem);
-font-weight: 800;
-line-height: 1;
-letter-spacing: -0.02em;
-margin-bottom: 0.5rem;
-}
-.hero h1 span { color: var(–accent1); }
-.hero-sub {
-font-size: clamp(1rem, 2vw, 1.3rem);
-color: var(–muted);
-font-style: italic;
-margin-bottom: 2.5rem;
-}
-.nav-pills {
-display: flex;
-gap: 0.75rem;
-flex-wrap: wrap;
-justify-content: center;
-}
-.nav-pills a {
-background: var(–card);
-border: 1px solid var(–border);
-color: var(–text);
-text-decoration: none;
-padding: 0.5em 1.2em;
-border-radius: 2em;
-font-family: ‘Syne’, sans-serif;
-font-size: 0.9rem;
-font-weight: 700;
-transition: all 0.2s;
-}
-.nav-pills a:hover { background: var(–accent1); color: var(–bg); border-color: var(–accent1); }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--accent1); }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  .nav-pills {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-pills a {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.5em 1.2em;
+    border-radius: 2em;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+  .nav-pills a:hover { background: var(--accent1); color: var(--bg); border-color: var(--accent1); }
 
-/* — SECTIONS — */
-section {
-max-width: 900px;
-margin: 0 auto;
-padding: 4rem 1.5rem;
-}
-.section-label {
-font-family: ‘Syne’, sans-serif;
-font-size: 0.72rem;
-font-weight: 700;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(–accent2);
-margin-bottom: 0.5rem;
-}
-h2 {
-font-family: ‘Syne’, sans-serif;
-font-size: clamp(1.8rem, 4vw, 2.8rem);
-font-weight: 800;
-line-height: 1.1;
-margin-bottom: 2rem;
-letter-spacing: -0.02em;
-}
-h3 {
-font-family: ‘Syne’, sans-serif;
-font-size: 1.1rem;
-font-weight: 700;
-color: var(–accent1);
-margin: 1.5rem 0 0.5rem;
-}
-p { color: #c0c0d8; margin-bottom: 0.8rem; }
+  /* — SECTIONS — */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent1);
+    margin: 1.5rem 0 0.5rem;
+  }
+  p { color: #c0c0d8; margin-bottom: 0.8rem; }
 
-/* — CARDS — */
-.card {
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 16px;
-padding: 1.5rem;
-margin-bottom: 1.2rem;
-position: relative;
-overflow: hidden;
-transition: transform 0.2s, border-color 0.2s;
-}
-.card:hover { transform: translateY(-2px); border-color: var(–accent2); }
-.card::before {
-content: ‘’;
-position: absolute;
-top: 0; left: 0; right: 0;
-height: 3px;
-border-radius: 16px 16px 0 0;
-}
-.card.green::before { background: var(–accent2); }
-.card.yellow::before { background: var(–accent1); }
-.card.pink::before { background: var(–accent3); }
-.card.blue::before { background: var(–accent4); }
+  /* — CARDS — */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--accent2); }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+  .card.green::before { background: var(--accent2); }
+  .card.yellow::before { background: var(--accent1); }
+  .card.pink::before { background: var(--accent3); }
+  .card.blue::before { background: var(--accent4); }
 
-.card-title {
-font-family: ‘Syne’, sans-serif;
-font-weight: 700;
-font-size: 1rem;
-margin-bottom: 0.6rem;
-display: flex;
-align-items: center;
-gap: 0.5rem;
-}
-.tag {
-font-size: 0.65rem;
-padding: 0.15em 0.6em;
-border-radius: 1em;
-font-weight: 700;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-background: #ffffff10;
-color: var(–muted);
-}
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .tag {
+    font-size: 0.65rem;
+    padding: 0.15em 0.6em;
+    border-radius: 1em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: #ffffff10;
+    color: var(--muted);
+  }
 
-/* — FORMULAS — */
-.formula-box {
-background: var(–formula);
-border: 1px solid #3a3a5a;
-border-radius: 10px;
-padding: 1rem 1.2rem;
-margin: 0.8rem 0;
-font-family: ‘DM Mono’, monospace;
-font-size: 0.95rem;
-color: var(–accent1);
-overflow-x: auto;
-white-space: pre;
-line-height: 1.8;
-}
-.formula-box .comment {
-color: var(–muted);
-font-style: italic;
-font-size: 0.82rem;
-}
-.formula-box .keyword { color: var(–accent2); }
-.formula-box .highlight { color: var(–accent3); }
+  /* — FORMULAS — */
+  .formula-box {
+    background: var(--formula);
+    border: 1px solid #3a3a5a;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin: 0.8rem 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--accent1);
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.8;
+  }
+  .formula-box .comment {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.82rem;
+  }
+  .formula-box .keyword { color: var(--accent2); }
+  .formula-box .highlight { color: var(--accent3); }
 
-/* — TWO COL — */
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media(max-width:600px) { .grid2 { grid-template-columns: 1fr; } }
+  /* — TWO COL — */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:600px) { .grid2 { grid-template-columns: 1fr; } }
 
-/* — VISUAL INTEGRAL — */
-.integral-visual {
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 16px;
-padding: 1.5rem;
-margin: 1.5rem 0;
-text-align: center;
-}
-canvas { max-width: 100%; border-radius: 8px; }
+  /* — VISUAL INTEGRAL — */
+  .integral-visual {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  canvas { max-width: 100%; border-radius: 8px; }
 
-/* — STEPS — */
-.steps { counter-reset: step; list-style: none; }
-.steps li {
-counter-increment: step;
-padding: 1rem 1rem 1rem 3.5rem;
-position: relative;
-border-left: 2px solid var(–border);
-margin-left: 1.2rem;
-margin-bottom: 0.5rem;
-}
-.steps li::before {
-content: counter(step);
-position: absolute;
-left: -1.2rem;
-top: 0.9rem;
-width: 2.4rem;
-height: 2.4rem;
-border-radius: 50%;
-background: var(–accent1);
-color: var(–bg);
-font-family: ‘Syne’, sans-serif;
-font-weight: 800;
-font-size: 0.85rem;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-.steps li:last-child { border-left-color: transparent; }
+  /* — STEPS — */
+  .steps { counter-reset: step; list-style: none; }
+  .steps li {
+    counter-increment: step;
+    padding: 1rem 1rem 1rem 3.5rem;
+    position: relative;
+    border-left: 2px solid var(--border);
+    margin-left: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: -1.2rem;
+    top: 0.9rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--accent1);
+    color: var(--bg);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .steps li:last-child { border-left-color: transparent; }
 
-/* — KEYWORD TABLE — */
-.kw-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-.kw-table th {
-background: #1e1e2e;
-padding: 0.7rem 1rem;
-text-align: left;
-font-family: ‘Syne’, sans-serif;
-font-weight: 700;
-font-size: 0.75rem;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(–muted);
-}
-.kw-table td { padding: 0.7rem 1rem; border-bottom: 1px solid var(–border); }
-.kw-table tr:hover td { background: #1e1e2e; }
-.kw-table .fn { color: var(–accent1); font-family: ‘DM Mono’, monospace; }
-.kw-table .prim { color: var(–accent2); font-family: ‘DM Mono’, monospace; }
+  /* — KEYWORD TABLE — */
+  .kw-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .kw-table th {
+    background: #1e1e2e;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .kw-table td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); }
+  .kw-table tr:hover td { background: #1e1e2e; }
+  .kw-table .fn { color: var(--accent1); font-family: 'DM Mono', monospace; }
+  .kw-table .prim { color: var(--accent2); font-family: 'DM Mono', monospace; }
 
-/* — DIVIDER — */
-.divider {
-border: none;
-height: 1px;
-background: linear-gradient(90deg, transparent, var(–border), transparent);
-margin: 0;
-}
+  /* — DIVIDER — */
+  .divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
 
-/* — ALERT / ASTUCE — */
-.alert {
-border-radius: 10px;
-padding: 1rem 1.2rem;
-margin: 1rem 0;
-border-left: 4px solid;
-font-size: 0.95rem;
-}
-.alert.tip { background: #1a2e1a; border-color: var(–accent2); }
-.alert.warn { background: #2e1a1a; border-color: var(–accent3); }
-.alert.info { background: #1a1a2e; border-color: var(–accent4); }
-.alert strong { font-family: ‘Syne’, sans-serif; }
+  /* — ALERT / ASTUCE — */
+  .alert {
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    border-left: 4px solid;
+    font-size: 0.95rem;
+  }
+  .alert.tip { background: #1a2e1a; border-color: var(--accent2); }
+  .alert.warn { background: #2e1a1a; border-color: var(--accent3); }
+  .alert.info { background: #1a1a2e; border-color: var(--accent4); }
+  .alert strong { font-family: 'Syne', sans-serif; }
 
-/* — SECTION SEPARATOR — */
-.chapter-sep {
-text-align: center;
-padding: 2rem;
-position: relative;
-}
-.chapter-sep::before {
-content: ‘’;
-position: absolute;
-top: 50%;
-left: 0; right: 0;
-height: 1px;
-background: var(–border);
-}
-.chapter-sep span {
-position: relative;
-background: var(–bg);
-padding: 0 1.5rem;
-font-family: ‘Syne’, sans-serif;
-font-size: 0.75rem;
-font-weight: 700;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(–muted);
-}
+  /* — SECTION SEPARATOR — */
+  .chapter-sep {
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+  }
+  .chapter-sep::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0; right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+  .chapter-sep span {
+    position: relative;
+    background: var(--bg);
+    padding: 0 1.5rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-/* — PRIMITIVES TABLE WRAPPER — */
-.table-wrap {
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 16px;
-overflow: hidden;
-margin: 1.2rem 0;
-}
+  /* — PRIMITIVES TABLE WRAPPER — */
+  .table-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 1.2rem 0;
+  }
 
-/* — SCROLL REVEAL — */
-.reveal {
-opacity: 0;
-transform: translateY(24px);
-transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.reveal.visible { opacity: 1; transform: none; }
+  /* — SCROLL REVEAL — */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
 </style>
-
 </head>
 <body>
 
 <!-- HERO -->
-
 <div class="hero">
- <div class="countdown-badge">⚡ DS dans 2 jours — mode révision activé</div>
- <h1>Maths<br><span>Made Clear</span></h1>
- <p class="hero-sub">Chapitre 3 · Intégration &nbsp;|&nbsp; Chapitre 4 · Taylor & DL</p>
- <div class="nav-pills">
-   <a href="#integration">Intégration</a>
-   <a href="#calculer">Calculer</a>
-   <a href="#primitives">Primitives</a>
-   <a href="#taylor">Taylor</a>
-   <a href="#dl">Développements limités</a>
-   <a href="#optim">Optimisation</a>
- </div>
+  <div class="countdown-badge">⚡ DS dans 2 jours — mode révision activé</div>
+  <h1>Maths<br><span>Made Clear</span></h1>
+  <p class="hero-sub">Chapitre 3 · Intégration &nbsp;|&nbsp; Chapitre 4 · Taylor & DL</p>
+  <div class="nav-pills">
+    <a href="#integration">Intégration</a>
+    <a href="#calculer">Calculer</a>
+    <a href="#primitives">Primitives</a>
+    <a href="#taylor">Taylor</a>
+    <a href="#dl">Développements limités</a>
+    <a href="#optim">Optimisation</a>
+  </div>
 </div>
 
 <!-- ===== CHAPITRE 3 ===== -->
-
 <section id="integration">
- <div class="section-label reveal">Chapitre 3</div>
- <h2 class="reveal">L'intégrale,<br>c'est quoi ?</h2>
+  <div class="section-label reveal">Chapitre 3</div>
+  <h2 class="reveal">L'intégrale,<br>c'est quoi ?</h2>
 
- <div class="integral-visual reveal">
-   <canvas id="integralCanvas" width="600" height="220"></canvas>
-   <p style="font-size:0.8rem;color:var(--muted);margin-top:0.5rem;">L'aire colorée sous la courbe = l'intégrale (positive au-dessus, négative en-dessous)</p>
- </div>
+  <div class="integral-visual reveal">
+    <canvas id="integralCanvas" width="600" height="220"></canvas>
+    <p style="font-size:0.8rem;color:var(--muted);margin-top:0.5rem;">L'aire colorée sous la courbe = l'intégrale (positive au-dessus, négative en-dessous)</p>
+  </div>
 
- <div class="grid2">
-   <div class="card green reveal">
-     <div class="card-title">🟰 Idée géométrique</div>
-     <p>L'intégrale ∫ₐᵇ f(x) dx = <strong>l'aire algébrique</strong> entre la courbe et l'axe des x.</p>
-     <p>Positive au-dessus de l'axe, <span style="color:var(--accent3)">négative en-dessous</span>.</p>
-   </div>
-   <div class="card yellow reveal">
-     <div class="card-title">🚗 Idée physique</div>
-     <p>Si v(t) = vitesse, alors ∫₀ᵀ v(t) dt = <strong>distance parcourue</strong>.</p>
-     <p>Vitesse × temps = distance. L'intégrale généralise ça.</p>
-   </div>
- </div>
+  <div class="grid2">
+    <div class="card green reveal">
+      <div class="card-title">🟰 Idée géométrique</div>
+      <p>L'intégrale ∫ₐᵇ f(x) dx = <strong>l'aire algébrique</strong> entre la courbe et l'axe des x.</p>
+      <p>Positive au-dessus de l'axe, <span style="color:var(--accent3)">négative en-dessous</span>.</p>
+    </div>
+    <div class="card yellow reveal">
+      <div class="card-title">🚗 Idée physique</div>
+      <p>Si v(t) = vitesse, alors ∫₀ᵀ v(t) dt = <strong>distance parcourue</strong>.</p>
+      <p>Vitesse × temps = distance. L'intégrale généralise ça.</p>
+    </div>
+  </div>
 
- <div class="card reveal">
-   <div class="card-title">📐 Fonction en escalier <span class="tag">définition clé</span></div>
-   <p>Une fonction φ est <strong>en escalier</strong> si elle est constante par morceaux. Son intégrale, c'est juste la <strong>somme des aires des rectangles</strong> :</p>
-   <div class="formula-box">∫ₐᵇ φ(x) dx  =  Σ cₖ × (xₖ - xₖ₋₁)
+  <div class="card reveal">
+    <div class="card-title">📐 Fonction en escalier <span class="tag">définition clé</span></div>
+    <p>Une fonction φ est <strong>en escalier</strong> si elle est constante par morceaux. Son intégrale, c'est juste la <strong>somme des aires des rectangles</strong> :</p>
+    <div class="formula-box">∫ₐᵇ φ(x) dx  =  Σ cₖ × (xₖ - xₖ₋₁)
 <span class="comment">         ↑           ↑         ↑
    intégrale    hauteur   largeur du rectangle</span></div>
- </div>
+  </div>
 
- <div class="card blue reveal">
-   <div class="card-title">✅ Quand est-ce qu'une fonction est intégrable ?</div>
-   <p>f est <strong>intégrable</strong> si l'approximation par en-dessous et par en-dessus convergent vers la même valeur : I⁻(f) = I⁺(f).</p>
-   <div class="alert tip">
-     <strong>Théorème simple à retenir :</strong><br>
-     f continue ⟹ f intégrable.<br>
-     f continue par morceaux ⟹ f intégrable.
-   </div>
- </div>
+  <div class="card blue reveal">
+    <div class="card-title">✅ Quand est-ce qu'une fonction est intégrable ?</div>
+    <p>f est <strong>intégrable</strong> si l'approximation par en-dessous et par en-dessus convergent vers la même valeur : I⁻(f) = I⁺(f).</p>
+    <div class="alert tip">
+      <strong>Théorème simple à retenir :</strong><br>
+      f continue ⟹ f intégrable.<br>
+      f continue par morceaux ⟹ f intégrable.
+    </div>
+  </div>
 </section>
 
 <hr class="divider">
 
 <section id="proprietes">
- <div class="section-label reveal">Chapitre 3 · §2</div>
- <h2 class="reveal">Les 3 propriétés<br>essentielles</h2>
+  <div class="section-label reveal">Chapitre 3 · §2</div>
+  <h2 class="reveal">Les 3 propriétés<br>essentielles</h2>
 
- <ol class="steps reveal">
-   <li>
-     <strong style="color:var(--accent2)">Relation de Chasles</strong>
-     <div class="formula-box">∫ₐᵇ f = ∫ₐᶜ f + ∫ᶜᵇ f
+  <ol class="steps reveal">
+    <li>
+      <strong style="color:var(--accent2)">Relation de Chasles</strong>
+      <div class="formula-box">∫ₐᵇ f = ∫ₐᶜ f + ∫ᶜᵇ f
 <span class="comment">On peut couper l'intervalle où on veut</span></div>
-   </li>
-   <li>
-     <strong style="color:var(--accent1)">Positivité</strong>
-     <div class="formula-box">f ≤ g  ⟹  ∫ₐᵇ f ≤ ∫ₐᵇ g</div>
-     <p style="font-size:0.9rem;color:var(--muted)">+ Inégalité triangulaire : |∫f| ≤ ∫|f|</p>
-   </li>
-   <li>
-     <strong style="color:var(--accent3)">Linéarité</strong>
-     <div class="formula-box">∫(f + λg) = ∫f + λ∫g
+    </li>
+    <li>
+      <strong style="color:var(--accent1)">Positivité</strong>
+      <div class="formula-box">f ≤ g  ⟹  ∫ₐᵇ f ≤ ∫ₐᵇ g</div>
+      <p style="font-size:0.9rem;color:var(--muted)">+ Inégalité triangulaire : |∫f| ≤ ∫|f|</p>
+    </li>
+    <li>
+      <strong style="color:var(--accent3)">Linéarité</strong>
+      <div class="formula-box">∫(f + λg) = ∫f + λ∫g
 <span class="comment">L'intégrale se distribue sur les sommes et sort les constantes</span></div>
-     <div class="alert warn">
-       <strong>⚠️ Attention :</strong> ∫(f × g) ≠ (∫f) × (∫g) en général !
-     </div>
-   </li>
- </ol>
+      <div class="alert warn">
+        <strong>⚠️ Attention :</strong> ∫(f × g) ≠ (∫f) × (∫g) en général !
+      </div>
+    </li>
+  </ol>
 </section>
 
 <hr class="divider">
 
 <section id="calculer">
- <div class="section-label reveal">Chapitre 3 · §3</div>
- <h2 class="reveal">Calculer une intégrale<br>concrètement</h2>
+  <div class="section-label reveal">Chapitre 3 · §3</div>
+  <h2 class="reveal">Calculer une intégrale<br>concrètement</h2>
 
- <div class="card green reveal">
-   <div class="card-title">⭐ Théorème fondamental de l'analyse <span class="tag">le plus important</span></div>
-   <p>Si F est une primitive de f (c'est-à-dire F' = f), alors :</p>
-   <div class="formula-box"><span class="highlight">∫ₐᵇ f(x) dx  =  F(b) - F(a)  =  [F(x)]ₐᵇ</span>
+  <div class="card green reveal">
+    <div class="card-title">⭐ Théorème fondamental de l'analyse <span class="tag">le plus important</span></div>
+    <p>Si F est une primitive de f (c'est-à-dire F' = f), alors :</p>
+    <div class="formula-box"><span class="highlight">∫ₐᵇ f(x) dx  =  F(b) - F(a)  =  [F(x)]ₐᵇ</span>
 <span class="comment">La notation [F(x)]ₐᵇ veut dire : on évalue en b, on enlève l'évaluation en a</span></div>
-   <div class="alert tip"><strong>En pratique :</strong> trouver une primitive → l'évaluer aux bornes → soustraire.</div>
- </div>
+    <div class="alert tip"><strong>En pratique :</strong> trouver une primitive → l'évaluer aux bornes → soustraire.</div>
+  </div>
 
- <div class="card yellow reveal">
-   <div class="card-title">🔄 Intégration par parties (IPP)</div>
-   <div class="formula-box">∫ₐᵇ u(x)v'(x) dx  =  [u·v]ₐᵇ  -  ∫ₐᵇ u'(x)v(x) dx</div>
-   <p>Choisir u et v' intelligemment : u doit se simplifier en dérivant, v' doit être facile à intégrer.</p>
-   <div class="alert info"><strong>Exemple type :</strong> ∫ x·eˣ dx → u=x, v'=eˣ → u'=1, v=eˣ</div>
- </div>
+  <div class="card yellow reveal">
+    <div class="card-title">🔄 Intégration par parties (IPP)</div>
+    <div class="formula-box">∫ₐᵇ u(x)v'(x) dx  =  [u·v]ₐᵇ  -  ∫ₐᵇ u'(x)v(x) dx</div>
+    <p>Choisir u et v' intelligemment : u doit se simplifier en dérivant, v' doit être facile à intégrer.</p>
+    <div class="alert info"><strong>Exemple type :</strong> ∫ x·eˣ dx → u=x, v'=eˣ → u'=1, v=eˣ</div>
+  </div>
 
- <div class="card blue reveal">
-   <div class="card-title">🔁 Changement de variable</div>
-   <div class="formula-box">∫_{φ(a)}^{φ(b)} f(x) dx  =  ∫ₐᵇ f(φ(t)) · φ'(t) dt
+  <div class="card blue reveal">
+    <div class="card-title">🔁 Changement de variable</div>
+    <div class="formula-box">∫_{φ(a)}^{φ(b)} f(x) dx  =  ∫ₐᵇ f(φ(t)) · φ'(t) dt
 <span class="comment">On pose x = φ(t), donc dx = φ'(t)dt, et on change les bornes</span></div>
-   <div class="alert tip"><strong>Moyen mémo :</strong> on substitue x par φ(t), on multiplie par φ'(t), on adapte les bornes.</div>
- </div>
+    <div class="alert tip"><strong>Moyen mémo :</strong> on substitue x par φ(t), on multiplie par φ'(t), on adapte les bornes.</div>
+  </div>
 </section>
 
 <hr class="divider">
 
 <section id="primitives">
- <div class="section-label reveal">Chapitre 3 · Tableau</div>
- <h2 class="reveal">Primitives usuelles<br><span style="color:var(--muted);font-size:0.6em">à connaître par cœur</span></h2>
+  <div class="section-label reveal">Chapitre 3 · Tableau</div>
+  <h2 class="reveal">Primitives usuelles<br><span style="color:var(--muted);font-size:0.6em">à connaître par cœur</span></h2>
 
- <div class="table-wrap reveal">
-   <table class="kw-table">
-     <thead>
-       <tr>
-         <th>Fonction f(x)</th>
-         <th>Primitive F(x)</th>
-         <th>Domaine</th>
-       </tr>
-     </thead>
-     <tbody>
-       <tr><td class="fn">eˣ</td><td class="prim">eˣ + c</td><td>ℝ</td></tr>
-       <tr><td class="fn">cos x</td><td class="prim">sin x + c</td><td>ℝ</td></tr>
-       <tr><td class="fn">sin x</td><td class="prim">−cos x + c</td><td>ℝ</td></tr>
-       <tr><td class="fn">xⁿ (n ∈ ℕ)</td><td class="prim">xⁿ⁺¹/(n+1) + c</td><td>ℝ</td></tr>
-       <tr><td class="fn">xᵅ (α ≠ −1)</td><td class="prim">xᵅ⁺¹/(α+1) + c</td><td>]0, +∞[</td></tr>
-       <tr><td class="fn">1/x</td><td class="prim">ln|x| + c</td><td>ℝ \ {0}</td></tr>
-       <tr><td class="fn">1/(1+x²)</td><td class="prim">arctan x + c</td><td>ℝ</td></tr>
-       <tr><td class="fn">sinh x</td><td class="prim">cosh x + c</td><td>ℝ</td></tr>
-       <tr><td class="fn">cosh x</td><td class="prim">sinh x + c</td><td>ℝ</td></tr>
-     </tbody>
-   </table>
- </div>
+  <div class="table-wrap reveal">
+    <table class="kw-table">
+      <thead>
+        <tr>
+          <th>Fonction f(x)</th>
+          <th>Primitive F(x)</th>
+          <th>Domaine</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="fn">eˣ</td><td class="prim">eˣ + c</td><td>ℝ</td></tr>
+        <tr><td class="fn">cos x</td><td class="prim">sin x + c</td><td>ℝ</td></tr>
+        <tr><td class="fn">sin x</td><td class="prim">−cos x + c</td><td>ℝ</td></tr>
+        <tr><td class="fn">xⁿ (n ∈ ℕ)</td><td class="prim">xⁿ⁺¹/(n+1) + c</td><td>ℝ</td></tr>
+        <tr><td class="fn">xᵅ (α ≠ −1)</td><td class="prim">xᵅ⁺¹/(α+1) + c</td><td>]0, +∞[</td></tr>
+        <tr><td class="fn">1/x</td><td class="prim">ln|x| + c</td><td>ℝ \ {0}</td></tr>
+        <tr><td class="fn">1/(1+x²)</td><td class="prim">arctan x + c</td><td>ℝ</td></tr>
+        <tr><td class="fn">sinh x</td><td class="prim">cosh x + c</td><td>ℝ</td></tr>
+        <tr><td class="fn">cosh x</td><td class="prim">sinh x + c</td><td>ℝ</td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <!-- ===== CHAPITRE 4 ===== -->
-
 <div class="chapter-sep"><span>Chapitre 4</span></div>
 
 <section id="taylor">
- <div class="section-label reveal">Chapitre 4</div>
- <h2 class="reveal">Formules de Taylor :<br>approximer une fonction</h2>
+  <div class="section-label reveal">Chapitre 4</div>
+  <h2 class="reveal">Formules de Taylor :<br>approximer une fonction</h2>
 
- <p class="reveal" style="font-size:1.05rem;color:#c0c0d8">L'idée : on remplace une fonction compliquée par un <strong style="color:var(--accent1)">polynôme</strong> qui lui ressemble près d'un point x₀.</p>
+  <p class="reveal" style="font-size:1.05rem;color:#c0c0d8">L'idée : on remplace une fonction compliquée par un <strong style="color:var(--accent1)">polynôme</strong> qui lui ressemble près d'un point x₀.</p>
 
- <div class="grid2">
-   <div class="card pink reveal">
-     <div class="card-title">📏 Taylor-Reste intégral</div>
-     <p>Formule <em>exacte</em> avec un reste exprimé par une intégrale.</p>
-     <div class="formula-box" style="font-size:0.8rem">f(x) = Σₖ₌₀ⁿ f⁽ᵏ⁾(x₀)/k! · (x-x₀)ᵏ
-      + ∫_{x₀}^{x} f⁽ⁿ⁺¹⁾(t)/n! · (x-t)ⁿ dt</div>
-   </div>
-   <div class="card yellow reveal">
-     <div class="card-title">🎯 Taylor-Young</div>
-     <p>Formule <em>approchée</em> avec le reste noté o(…). C'est celle qu'on utilise pour les DL.</p>
-     <div class="formula-box" style="font-size:0.8rem">f(x) = Σₖ₌₀ⁿ f⁽ᵏ⁾(x₀)/k! · (x-x₀)ᵏ
-      + o((x-x₀)ⁿ)   (x→x₀)</div>
-   </div>
- </div>
+  <div class="grid2">
+    <div class="card pink reveal">
+      <div class="card-title">📏 Taylor-Reste intégral</div>
+      <p>Formule <em>exacte</em> avec un reste exprimé par une intégrale.</p>
+      <div class="formula-box" style="font-size:0.8rem">f(x) = Σₖ₌₀ⁿ f⁽ᵏ⁾(x₀)/k! · (x-x₀)ᵏ
+     + ∫_{x₀}^{x} f⁽ⁿ⁺¹⁾(t)/n! · (x-t)ⁿ dt</div>
+    </div>
+    <div class="card yellow reveal">
+      <div class="card-title">🎯 Taylor-Young</div>
+      <p>Formule <em>approchée</em> avec le reste noté o(…). C'est celle qu'on utilise pour les DL.</p>
+      <div class="formula-box" style="font-size:0.8rem">f(x) = Σₖ₌₀ⁿ f⁽ᵏ⁾(x₀)/k! · (x-x₀)ᵏ
+     + o((x-x₀)ⁿ)   (x→x₀)</div>
+    </div>
+  </div>
 
- <div class="card green reveal">
-   <div class="card-title">💡 Exemple concret : eˣ en x₀ = 0</div>
-   <div class="formula-box">eˣ = <span class="keyword">1</span> + <span class="keyword">x</span> + <span class="keyword">x²/2</span> + <span class="keyword">x³/6</span> + o(x³)
+  <div class="card green reveal">
+    <div class="card-title">💡 Exemple concret : eˣ en x₀ = 0</div>
+    <div class="formula-box">eˣ = <span class="keyword">1</span> + <span class="keyword">x</span> + <span class="keyword">x²/2</span> + <span class="keyword">x³/6</span> + o(x³)
 
-<span class="comment">= f(0)  + f’(0)·x  + f’’(0)/2! · x²  + f’’’(0)/3! · x³ + …</span></div>
-<p>Chaque terme ajoute de la précision. Plus on en met, meilleure est l’approximation.</p>
-
- </div>
+<span class="comment">= f(0)  + f'(0)·x  + f''(0)/2! · x²  + f'''(0)/3! · x³ + …</span></div>
+    <p>Chaque terme ajoute de la précision. Plus on en met, meilleure est l'approximation.</p>
+  </div>
 </section>
 
 <hr class="divider">
 
 <section id="dl">
- <div class="section-label reveal">Chapitre 4 · §5</div>
- <h2 class="reveal">Développements limités<br>usuels en x₀ = 0</h2>
+  <div class="section-label reveal">Chapitre 4 · §5</div>
+  <h2 class="reveal">Développements limités<br>usuels en x₀ = 0</h2>
 
- <div class="alert info reveal">
-   <strong>Comment lire un DL :</strong> la formule donne l'approximation polynomiale à l'ordre n. Le <code>o(xⁿ)</code> signifie "un reste qui s'annule plus vite que xⁿ".
- </div>
+  <div class="alert info reveal">
+    <strong>Comment lire un DL :</strong> la formule donne l'approximation polynomiale à l'ordre n. Le <code>o(xⁿ)</code> signifie "un reste qui s'annule plus vite que xⁿ".
+  </div>
 
- <div class="card green reveal">
-   <div class="card-title">eˣ</div>
-   <div class="formula-box">eˣ = 1 + x + x²/2! + x³/3! + ... + xⁿ/n! + o(xⁿ)</div>
- </div>
+  <div class="card green reveal">
+    <div class="card-title">eˣ</div>
+    <div class="formula-box">eˣ = 1 + x + x²/2! + x³/3! + ... + xⁿ/n! + o(xⁿ)</div>
+  </div>
 
- <div class="card yellow reveal">
-   <div class="card-title">ln(1 + x)</div>
-   <div class="formula-box">ln(1+x) = x - x²/2 + x³/3 - x⁴/4 + ... + (-1)ⁿ⁺¹xⁿ/n + o(xⁿ)</div>
- </div>
+  <div class="card yellow reveal">
+    <div class="card-title">ln(1 + x)</div>
+    <div class="formula-box">ln(1+x) = x - x²/2 + x³/3 - x⁴/4 + ... + (-1)ⁿ⁺¹xⁿ/n + o(xⁿ)</div>
+  </div>
 
- <div class="card blue reveal">
-   <div class="card-title">sin x et cos x</div>
-   <div class="formula-box">sin x = x - x³/6 + x⁵/120 - ... + (-1)ᵏ x²ᵏ⁺¹/(2k+1)! + o(x²ᵏ⁺²)
+  <div class="card blue reveal">
+    <div class="card-title">sin x et cos x</div>
+    <div class="formula-box">sin x = x - x³/6 + x⁵/120 - ... + (-1)ᵏ x²ᵏ⁺¹/(2k+1)! + o(x²ᵏ⁺²)
 
 cos x = 1 - x²/2 + x⁴/24 - … + (-1)ᵏ x²ᵏ/(2k)!   + o(x²ᵏ⁺¹)</div>
-<div class="alert tip"><strong>Moyen mnémotechnique :</strong> sin a les puissances impaires, cos a les puissances paires.</div>
+    <div class="alert tip"><strong>Moyen mnémotechnique :</strong> sin a les puissances impaires, cos a les puissances paires.</div>
+  </div>
 
- </div>
-
- <div class="card pink reveal">
-   <div class="card-title">(1 + x)ᵅ (généralisation)</div>
-   <div class="formula-box">(1+x)ᵅ = 1 + αx + α(α-1)/2! · x² + ... + o(xⁿ)
+  <div class="card pink reveal">
+    <div class="card-title">(1 + x)ᵅ (généralisation)</div>
+    <div class="formula-box">(1+x)ᵅ = 1 + αx + α(α-1)/2! · x² + ... + o(xⁿ)
 <span class="comment">
 Pour α = -1 : (1+x)⁻¹ = 1 - x + x² - x³ + ...
 Pour α = 1/2: √(1+x) ≈ 1 + x/2 - x²/8 + ...</span></div>
- </div>
+  </div>
 
- <h3 class="reveal">Opérations sur les DL</h3>
+  <h3 class="reveal">Opérations sur les DL</h3>
 
- <div class="grid2">
-   <div class="card reveal">
-     <div class="card-title">➕ Somme</div>
-     <p>On additionne terme à terme, et le <em>o</em> reste le même.</p>
-   </div>
-   <div class="card reveal">
-     <div class="card-title">✖️ Produit</div>
-     <p>On multiplie les polynômes et on <strong>tronque</strong> à l'ordre n (on jette les termes de degré > n).</p>
-   </div>
- </div>
+  <div class="grid2">
+    <div class="card reveal">
+      <div class="card-title">➕ Somme</div>
+      <p>On additionne terme à terme, et le <em>o</em> reste le même.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-title">✖️ Produit</div>
+      <p>On multiplie les polynômes et on <strong>tronque</strong> à l'ordre n (on jette les termes de degré > n).</p>
+    </div>
+  </div>
 
- <div class="card reveal">
-   <div class="card-title">🔗 Composition</div>
-   <p>Pour f(g(x)) avec g(0) = 0 : on substitue le DL de g dans le DL de f, puis on tronque à l'ordre n.</p>
-   <div class="alert info">
-     <strong>Exemple :</strong> ln(1 + sin x) → on remplace h = sin x dans ln(1+h), puis on développe sin x.
-   </div>
- </div>
+  <div class="card reveal">
+    <div class="card-title">🔗 Composition</div>
+    <p>Pour f(g(x)) avec g(0) = 0 : on substitue le DL de g dans le DL de f, puis on tronque à l'ordre n.</p>
+    <div class="alert info">
+      <strong>Exemple :</strong> ln(1 + sin x) → on remplace h = sin x dans ln(1+h), puis on développe sin x.
+    </div>
+  </div>
 
- <div class="card yellow reveal">
-   <div class="card-title">📍 DL en x₀ ≠ 0</div>
-   <p>On pose <strong>h = x − x₀</strong>, et on fait un DL en h → 0. Ça évite de recalculer toutes les dérivées.</p>
-   <div class="formula-box"><span class="comment">Ex : DL de eˣ en x₀ = 1</span>
+  <div class="card yellow reveal">
+    <div class="card-title">📍 DL en x₀ ≠ 0</div>
+    <p>On pose <strong>h = x − x₀</strong>, et on fait un DL en h → 0. Ça évite de recalculer toutes les dérivées.</p>
+    <div class="formula-box"><span class="comment">Ex : DL de eˣ en x₀ = 1</span>
 eˣ = e^(1+(x-1)) = e · e^(x-1) = e · e^h
   = e(1 + h + h²/2 + h³/6 + ...)
   = e(1 + (x-1) + (x-1)²/2 + ...)</div>
- </div>
+  </div>
 </section>
 
 <hr class="divider">
 
 <section id="optim">
- <div class="section-label reveal">Chapitre 4 · §6</div>
- <h2 class="reveal">Optimisation en dim 1</h2>
+  <div class="section-label reveal">Chapitre 4 · §6</div>
+  <h2 class="reveal">Optimisation en dim 1</h2>
 
- <div class="card pink reveal">
-   <div class="card-title">🔍 Nature des points critiques</div>
-   <p>Si f'(x₀) = 0 (point critique), on regarde f''(x₀) :</p>
-   <div class="grid2" style="margin-top:0.8rem">
-     <div class="formula-box" style="text-align:center">f''(x₀) > 0
+  <div class="card pink reveal">
+    <div class="card-title">🔍 Nature des points critiques</div>
+    <p>Si f'(x₀) = 0 (point critique), on regarde f''(x₀) :</p>
+    <div class="grid2" style="margin-top:0.8rem">
+      <div class="formula-box" style="text-align:center">f''(x₀) > 0
 <span class="keyword">MINIMUM local</span>
 <span class="comment">(courbe "sourit" ∪)</span></div>
-     <div class="formula-box" style="text-align:center">f''(x₀) < 0
+      <div class="formula-box" style="text-align:center">f''(x₀) < 0
 <span class="highlight">MAXIMUM local</span>
 <span class="comment">(courbe "pleure" ∩)</span></div>
-   </div>
-   <div class="alert warn"><strong>⚠️</strong> Si f''(x₀) = 0, on ne sait pas (peut être min, max ou rien).</div>
- </div>
+    </div>
+    <div class="alert warn"><strong>⚠️</strong> Si f''(x₀) = 0, on ne sait pas (peut être min, max ou rien).</div>
+  </div>
 
- <div class="card green reveal">
-   <div class="card-title">🗺️ Méthode complète sur [a, b]</div>
-   <ol class="steps">
-     <li>Trouver les points critiques : résoudre f'(x) = 0 sur [a, b]</li>
-     <li>Tester la nature de chaque point critique avec f''</li>
-     <li>Évaluer f aux <strong>bords</strong> : f(a) et f(b)</li>
-     <li>Comparer toutes les valeurs → identifier min et max globaux</li>
-   </ol>
- </div>
+  <div class="card green reveal">
+    <div class="card-title">🗺️ Méthode complète sur [a, b]</div>
+    <ol class="steps">
+      <li>Trouver les points critiques : résoudre f'(x) = 0 sur [a, b]</li>
+      <li>Tester la nature de chaque point critique avec f''</li>
+      <li>Évaluer f aux <strong>bords</strong> : f(a) et f(b)</li>
+      <li>Comparer toutes les valeurs → identifier min et max globaux</li>
+    </ol>
+  </div>
 </section>
 
 <!-- FOOTER -->
-
 <div style="text-align:center;padding:3rem 1rem;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);margin-top:2rem">
- <p>Bonne chance pour le DS 🍀 — Tu vas assurer.</p>
+  <p>Bonne chance pour le DS 🍀 — Tu vas assurer.</p>
 </div>
 
 <script>
@@ -635,7 +627,7 @@ const py = y => H / 2 - y * (H * 0.38);
 ctx.strokeStyle = '#2a2a38';
 ctx.lineWidth = 1;
 for (let y = -1; y <= 1; y += 0.5) {
- ctx.beginPath(); ctx.moveTo(0, py(y)); ctx.lineTo(W, py(y)); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, py(y)); ctx.lineTo(W, py(y)); ctx.stroke();
 }
 
 // Fill area under curve
@@ -643,8 +635,8 @@ const steps = 300;
 ctx.beginPath();
 ctx.moveTo(px(0), py(0));
 for (let i = 0; i <= steps; i++) {
- const x = i / steps * 8;
- ctx.lineTo(px(x), py(f(x)));
+  const x = i / steps * 8;
+  ctx.lineTo(px(x), py(f(x)));
 }
 ctx.lineTo(px(8), py(0));
 ctx.closePath();
@@ -658,9 +650,12 @@ ctx.fill();
 // Negative area
 ctx.beginPath();
 for (let i = 0; i <= steps; i++) {
- const x = i / steps * 8;
- const y = f(x);
- if (y < 0) { if (i === 0 || f((i-1)/steps*8) >= 0) ctx.moveTo(px(x), py(0)); ctx.lineTo(px(x), py(y)); }
+  const x = i / steps * 8;
+  const y = f(x);
+  if (y < 0) {
+    if (i === 0 || f((i-1)/steps*8) >= 0) ctx.moveTo(px(x), py(0));
+    ctx.lineTo(px(x), py(y));
+  }
 }
 ctx.strokeStyle = '#ff6b9d44';
 ctx.lineWidth = 8;
@@ -675,10 +670,10 @@ ctx.beginPath(); ctx.moveTo(px(0), 0); ctx.lineTo(px(0), H); ctx.stroke();
 // Curve
 ctx.beginPath();
 for (let i = 0; i <= steps; i++) {
- const x = i / steps * 8;
- const y = f(x);
- if (i === 0) ctx.moveTo(px(x), py(y));
- else ctx.lineTo(px(x), py(y));
+  const x = i / steps * 8;
+  const y = f(x);
+  if (i === 0) ctx.moveTo(px(x), py(y));
+  else ctx.lineTo(px(x), py(y));
 }
 ctx.strokeStyle = '#e8ff6b';
 ctx.lineWidth = 2.5;
@@ -694,7 +689,7 @@ ctx.fillText('b', px(8) + 4, py(0) + 18);
 
 // ---- SCROLL REVEAL ----
 const observer = new IntersectionObserver(entries => {
- entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
